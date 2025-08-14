@@ -5,7 +5,6 @@ This document provides a comprehensive explanation of the `index.html` file for 
 ## Table of Contents
 - [Overview](#overview)
 - [HTML Structure](#html-structure)
-- [CSS Styling](#css-styling)
 - [JavaScript Functionality](#javascript-functionality)
 - [Code Architecture](#code-architecture)
 
@@ -21,22 +20,6 @@ The `index.html` file is a single-file web application that provides remote cont
 - **Auto IP detection**: Automatically detects server IP address
 
 ## HTML Structure
-
-### Document Setup
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RGB Remote Control</title>
-</head>
-```
-
-**Meta Tags:**
-- `charset="UTF-8"`: Ensures proper character encoding
-- `title`: Page title displayed in browser tab
-
 ### Main Container
 ```html
 <div class="container">
@@ -108,69 +91,6 @@ The `index.html` file is a single-file web application that provides remote cont
 - Status display area
 - Monospace font for technical appearance
 - Shows timestamp and sent commands
-
-## CSS Styling
-
-### Design Philosophy
-The CSS follows a minimalist approach with:
-- **Clean, modern appearance**
-- **Mobile-first responsive design**
-- **Touch-friendly input sizes**
-- **Consistent spacing and typography**
-
-### Key Styles
-
-#### Body and Container
-```css
-body {
-    margin: 0;
-    padding: 16px;
-    font-family: system-ui, -apple-system, sans-serif;
-    line-height: 1.5;
-}
-
-.container {
-    max-width: 500px;
-    margin: 0 auto;
-}
-```
-
-**Features**:
-- System font stack for native feel
-- 16px padding for mobile touch targets
-- Centered container with max-width
-
-#### Sections
-```css
-.section {
-    margin-bottom: 24px;
-    padding: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-```
-
-**Features**:
-- Consistent spacing between sections
-- Subtle borders for visual separation
-- Rounded corners for modern appearance
-
-#### Disabled State
-```css
-.disabled {
-    opacity: 0.5;
-}
-
-button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-}
-```
-
-**Features**:
-- Visual indication of disabled state
-- Reduced opacity for disabled sections
-- Gray background for disabled buttons
 
 ## JavaScript Functionality
 ### Core Functions
