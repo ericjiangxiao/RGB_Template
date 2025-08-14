@@ -1,6 +1,6 @@
 # RGB Remote Control - Code Explanation
 
-This document provides a comprehensive explanation of the `index.html` file for the Simple RGB Remote Control web application.
+This document provides an explanation of the `index.html` file for the Simple RGB web application.
 
 ## Table of Contents
 - [Overview](#overview)
