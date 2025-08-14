@@ -1,3 +1,14 @@
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*    Module:       vex.h                                                     */
+/*    Author:       Vex Robotics                                              */
+/*    Created:      1 Feb 2019                                                */
+/*    Description:  Default header for V5 projects                            */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+//
+
+#pragma once
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,6 +17,12 @@
 #include "v5.h"
 #include "v5_vcs.h"
 
+#include "robot-config.h"
+#include "autons.h"
+
+#include "rgb-template/drive.h"
+#include "rgb-template/util.h"
+#include "rgb-template/PID.h"
 
 #define waitUntil(condition)                                                   \
   do {                                                                         \
