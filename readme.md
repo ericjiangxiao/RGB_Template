@@ -13,7 +13,7 @@ This library is designed specifically for teams who are getting started with VEX
     - (Optional) You have the [GitHub](https://github.com/) account and extension in VS Code installed.
     - (Optional) If you are using Mac with Apple silicon: [install Rosetta](https://support.apple.com/en-us/102527) to simulate Intel chip if errors show up with VEX extension.
 *   **Download and Open the Project:** 
-    *   Download [the source code as a ZIP file](https://github.com/ericjiangxiao/RBG_sample/archive/refs/heads/main.zip). Unzip and extract the downloaded files to a local folder.
+    *   Download [the source code as a ZIP file](https://github.com/ericjiangxiao/RGB_Template/archive/refs/heads/main.zip). Unzip and extract the downloaded files to a local folder.
     *   In VSCode, go to `File > Open Folder` and select the extracted folder.
     *  (Optional) Or follow the instructions to [pull the repository](doc/how_to_clone_and_pull_with_vscode.md) from github using VSCode.
 *   **(Optional) If the project cannot build correctly**: 
