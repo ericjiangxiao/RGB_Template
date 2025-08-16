@@ -65,7 +65,7 @@ char const * autonMenuText[] = {
 
 
 // ----------------------------------------------------------------------------
-//                 Only change code below this line when necessary
+//               Code below are not specific to any game
 // ----------------------------------------------------------------------------
 
 int autonNum;                         // Total number of autons, automatically calculated based on the size of the autonMenuText array

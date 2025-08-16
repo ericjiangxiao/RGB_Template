@@ -48,7 +48,7 @@ void setupButtonMapping() {
 
 
 // ------------------------------------------------------------------------
-//               Only change code below this line when necessary
+//               Code below are not specific to any game
 // ------------------------------------------------------------------------
   
 void pollCommandMessages()

@@ -45,7 +45,7 @@ void stopRollers() {
 }
 
 // ------------------------------------------------------------------------
-//               Only change code below this line when necessary
+//               Code below are not specific to any game
 // ------------------------------------------------------------------------
 
 // A global instance of brain used for printing to the V5 Brain screen
