@@ -207,7 +207,6 @@ int autonNum;                       // Total number of autons (automatically cal
 - `buttonUpAction()`: Handles Up button (previous step)
 - `buttonDownAction()`: Handles Down button (next step)
 - `buttonAAction()`: Handles A button (run auton test)
-- `runAutonTest()`: Executes the selected auton and displays timing
 - `continueAutonStep()`: Controls step progression
 
 ### Button Registration

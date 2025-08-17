@@ -63,12 +63,7 @@ private:
   float getLeftPositionIn();
   // Gets the position of the right side of the drivetrain in inches.
   float getRightPositionIn();
-  
-  // Turns the robot to a specific heading with advanced options.
-  void turnToHeading(float heading, float turnMaxVoltage, bool chaining, float settleError = 5, float settleTime = 50);
 
-  // Drives the robot a specific distance with advanced options.
-  void driveDistance(float distance, float driveMaxVoltage, float heading, float headingMaxVoltage, bool chaining, float driveSettleError=2, float driveSettleTime=50) ;
 
 public: 
   // The inertial sensor.

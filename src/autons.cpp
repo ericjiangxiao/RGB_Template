@@ -198,21 +198,6 @@ void pre_auton() {
 // ----------------------------------------------------------------------------
 //                 For testing autonomous steps
 // ----------------------------------------------------------------------------
-bool runAutonTest()
-{
-  if (!autonTestMode) return false;
-
-  // If in test mode, run the selected autonomous routine for testing and displays the run time.
-  controller(primary).rumble(".");
-  double t1 = Brain.Timer.time(sec);
-  runAutonItem(); 
-  double t2 = Brain.Timer.time(sec);
-  char timeMsg[30];
-  sprintf(timeMsg, "run time: %.0f", t2-t1);
-  printControllerScreen(timeMsg);
-  chassis.stop(coast);
-  return true;
-}
 
 bool continueAutonStep()
 {
@@ -296,7 +281,7 @@ void buttonAAction()
     runAutonItem(); 
     double t2 = Brain.Timer.time(sec);
     char timeMsg[30];
-    sprintf(timeMsg, "run time: %.0f", t2-t1);
+    sprintf(timeMsg, "run time: %.1f", t2-t1);
     printControllerScreen(timeMsg);
     chassis.stop(coast);
   }
