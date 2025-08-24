@@ -1,5 +1,8 @@
 #include "vex.h"
 using namespace vex;
+// A global instance of brain used for printing to the V5 Brain screen
+brain Brain;
+controller controller1 = controller(primary);
 
 // ------------------------------------------------------------------------
 //              Drivetrain definition
@@ -48,9 +51,6 @@ void stopRollers() {
 //               Code below are not specific to any game
 // ------------------------------------------------------------------------
 
-// A global instance of brain used for printing to the V5 Brain screen
-brain Brain;
-controller controller1 = controller(primary);
 
 Drive chassis(
   //Left Motors:
