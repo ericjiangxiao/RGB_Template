@@ -1,7 +1,9 @@
 # RGB BOTS template
-From Haverford Robotics Team 169 (The Cavalry) and RGB Bots Team 99009A (the little red pony).
+From Haverford Robotics Team 169X (The Cavalry) and RGB Bots Team 99009A (the little red pony).
 
 This project provides a lightweight C++ template for VEX V5 robotics. It offers a modular architecture and a simple library for PID driving control and autonomous code structure, allowing teams to quickly get their robot operational and adapt the core functionality to their needs. The built-in test mode allows teams to step through and test all of their autonomous routines during driver control, providing a unique way to debug and iterate without having to rebuild multiple programs or require the field switch. Finally, the included sample web application for controlling the robot in real time on mobile devices adds a fun and interactive dimension to VEX robot beyond V5RC competitions (see [demo video](https://youtube.com/shorts/rn8VEuGWva8)).
+
+This project also includes a [python version](RGB-Template-Python/readme.md) of the code with simplified features. If you are a beginner team you might want to check it out. 
 
 ## Target Audience
 

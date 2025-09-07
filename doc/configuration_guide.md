@@ -2,7 +2,7 @@
 
 This guide provides step-by-step instructions for configuring your VEX V5 robot code using RGB template.
 
-**⚠️ Important:** The **Drivetrain Configuration** section is mandatory for you to be able to test drive. The other sections are optional and depend on your specific needs.
+**Important:** The **Drivetrain Configuration** section is mandatory for you to be able to test drive. The other sections are optional and depend on your specific needs.
 ---
 
 ## Drivetrain Configuration *(Required)*
@@ -115,7 +115,7 @@ int NUMBER_OF_MOTORS = 8;  // Total number of motors
 
 **Action:** Update to match your total number of motors.
 
-**⚠️ Motor Monitoring System:**
+**Motor Monitoring System:**
 The program automatically monitors motor health and will alert the driver if:
 - **Disconnected motors**: Controller vibrates with "---" pattern and displays "X motor is disconnected"
 - **Overheated motors**: Controller vibrates with "---" pattern and displays "motor X is Y°C" (default temperature limit: 50°C)
