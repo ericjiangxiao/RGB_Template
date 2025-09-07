@@ -20,7 +20,7 @@ private:
   float turnKd;
   float turnStarti;
 
-  // turn eixit conditions.
+  // turn exit conditions.
   float turnSettleError = 1.5;
   float turnSettleTime = 200;
   float turnTimeout = 1500;

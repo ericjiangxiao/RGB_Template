@@ -159,7 +159,7 @@ void exitAuton()
   chassis.stop(coast);
 }
 
-bool setupgyro() {
+bool setupGyro() {
   wait(100, msec);
   if (!chassis.gyro.installed()) {
     printControllerScreen("inertial sensor failure");
@@ -181,7 +181,7 @@ bool setupgyro() {
 // This function is called before the autonomous period starts.
 void pre_auton() {
   // Sets up the gyro.
-  bool gyroSetupSuccess = setupgyro();
+  bool gyroSetupSuccess = setupGyro();
 
   bool motorsSetupSuccess = true;
 
