@@ -29,7 +29,7 @@ inertial_1 = Inertial(Ports.PORT10)
 
 **Action:** Replace `Ports.PORT1`, `Ports.PORT2`, etc. with your actual motor port numbers. Make sure the *motor directions* (True/False) are correct. If you have a 4-motor setup, simply assign the `left_motor3`, `right_motor3` to unused ports.
 
-### Step 2 Set Drive Mode
+### Step 2: Set Drive Mode
 Locate the drive mode setting:
 
 ```python

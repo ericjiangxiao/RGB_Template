@@ -485,8 +485,9 @@ def button_r2_action():
     chassis.stop(BrakeType.COAST)
 
 def button_r1_action():
-    chassis.turn_to_heading(chassis.get_heading() + 180)
-    chassis.drive_distance(12, 8, 90, 4)
+    """Macro action to turn to the right and drive a tile distance"""
+    chassis.turn_to_heading(chassis.get_heading() + 90)
+    chassis.drive_distance(24)
 
 def setup_button_mapping():
     """Set up button mappings for the controller."""
