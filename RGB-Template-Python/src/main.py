@@ -444,11 +444,11 @@ This section is used to configure the motors, controller buttons, and auton func
 # If you only have 4 motors (or mecanum drive), assign left_motor3, right_motor3 to unused ports.
 left_motor1 = Motor(Ports.PORT1, GearSetting.RATIO_6_1, True)
 left_motor2 = Motor(Ports.PORT2, GearSetting.RATIO_6_1, True)
-left_motor3 = Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
+left_motor3 = Motor(Ports.PORT3, GearSetting.RATIO_6_1, False)
 
 right_motor1 = Motor(Ports.PORT4, GearSetting.RATIO_6_1, False)
 right_motor2 = Motor(Ports.PORT5, GearSetting.RATIO_6_1, False)
-right_motor3 = Motor(Ports.PORT6, GearSetting.RATIO_18_1, True)
+right_motor3 = Motor(Ports.PORT6, GearSetting.RATIO_6_1, True)
 
 # Inertial sensor for auton turning
 # If you do not have an inertial sensor, assign it to an unused port. Ignore the warning at the start of the program.

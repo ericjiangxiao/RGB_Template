@@ -16,12 +16,12 @@ Locate the motor definitions and update the port numbers and motor directions:
 # Left side motors
 left_motor1 = Motor(Ports.PORT1, GearSetting.RATIO_6_1, True)
 left_motor2 = Motor(Ports.PORT2, GearSetting.RATIO_6_1, True)
-left_motor3 = Motor(Ports.PORT3, GearSetting.RATIO_18_1, False)
+left_motor3 = Motor(Ports.PORT3, GearSetting.RATIO_6_1, False)
 
 # Right side motors
 right_motor1 = Motor(Ports.PORT4, GearSetting.RATIO_6_1, False)
 right_motor2 = Motor(Ports.PORT5, GearSetting.RATIO_6_1, False)
-right_motor3 = Motor(Ports.PORT6, GearSetting.RATIO_18_1, True)
+right_motor3 = Motor(Ports.PORT6, GearSetting.RATIO_6_1, True)
 
 # Inertial sensor
 inertial_1 = Inertial(Ports.PORT10)

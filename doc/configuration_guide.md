@@ -19,12 +19,12 @@ Find the motor definitions and update the port numbers and motor directions:
 // Left side motors
 motor leftMotor1 = motor(PORT1, ratio6_1, true);
 motor leftMotor2 = motor(PORT2, ratio6_1, true);
-motor leftMotor3 = motor(PORT3, ratio18_1, false);
+motor leftMotor3 = motor(PORT3, ratio6_1, false);
 
 // Right side motors
 motor rightMotor1 = motor(PORT4, ratio6_1, false);
 motor rightMotor2 = motor(PORT5, ratio6_1, false);
-motor rightMotor3 = motor(PORT6, ratio18_1, true);
+motor rightMotor3 = motor(PORT6, ratio6_1, true);
 
 // Inertial sensor
 inertial inertial1 = inertial(PORT10);
