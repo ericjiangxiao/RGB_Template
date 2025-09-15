@@ -1,13 +1,11 @@
 #include "vex.h"
 int currentAutonSelection = 0;        // Current auton selection
-int autonTestStep = 0;                // Current step in auton
-
+int autonTestStep = 0;                // Current step in auton test mode
 
 // The first autonomous routine.
 void sampleAuton1() {
-  chassis.driveWithVoltage(3, 3);
-  wait(1000, msec);
-  chassis.stop(brake);
+  // Example: drive forward a tile distance
+  chassis.driveDistance(24);
 }
 
 // The second autonomous routine.
@@ -148,40 +146,36 @@ void endgameTimer() {
 void exitAuton()
 {
   exitAutonMenu = true;
-  chassis.joystickTouched = false;
     // Clears the brain timer.
   Brain.Timer.clear();
     // Starts the end game timer thread.
   thread endgameTimer_thread = thread(endgameTimer);
-  if (!chassis.joystickTouched) {
-    //TODO: some macto actions
-  }
   chassis.stop(coast);
 }
 
-bool setupGyro() {
+bool setupinertialSensor() {
   wait(100, msec);
-  if (!chassis.gyro.installed()) {
+  if (!chassis.inertialSensor.installed()) {
     printControllerScreen("inertial sensor failure");
     controller1.rumble("---");
     wait(2, seconds);
     return false;  
   }
 
-  chassis.gyro.calibrate(3);
+  chassis.inertialSensor.calibrate(3);
   // Waits until the inertial sensor is calibrated.
-  while (chassis.gyro.isCalibrating()) {
+  while (chassis.inertialSensor.isCalibrating()) {
     wait(100, msec);
   }
-  // Rumbles the controller to indicate that the gyro is calibrated.
+  // Rumbles the controller to indicate that the inertialSensor is calibrated.
   controller1.rumble(".");
   return true;
 }
 
 // This function is called before the autonomous period starts.
 void pre_auton() {
-  // Sets up the gyro.
-  bool gyroSetupSuccess = setupGyro();
+  // Sets up the inertialSensor.
+  bool inertialSensorSetupSuccess = setupinertialSensor();
 
   bool motorsSetupSuccess = true;
 
@@ -190,7 +184,7 @@ void pre_auton() {
   //set the parameters for the chassis
   setChassisDefaults();
   // Shows the autonomous menu.
-  if(gyroSetupSuccess && motorsSetupSuccess) showAutonMenu();
+  if(inertialSensorSetupSuccess && motorsSetupSuccess) showAutonMenu();
 }
 
 

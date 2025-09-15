@@ -5,11 +5,10 @@
 using namespace vex;
 
 // A global instance of competition
-// This object is used to register callbacks for the autonomous and driver control periods.
 competition Competition;
 
 // This function is called when the L1 button is pressed.
-void sampleButtonL1Action() {
+void buttonL1Action() {
   inTake();
   
   // Wait until the button is released to stop the rollers.
@@ -40,7 +39,7 @@ void buttonR2Action()
 }
 
 void setupButtonMapping() {
-  controller1.ButtonL1.pressed(sampleButtonL1Action);
+  controller1.ButtonL1.pressed(buttonL1Action);
   controller1.ButtonL2.pressed(buttonL2Action);
   controller1.ButtonR2.pressed(buttonR2Action);
 }

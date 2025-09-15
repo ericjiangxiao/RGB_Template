@@ -10,15 +10,15 @@ controller controller1 = controller(primary);
 //If you only have 4  motors (or mecanum drive), assign leftMotor3, rightMotor3 to unused ports.
 motor leftMotor1 = motor(PORT1, ratio6_1, true);
 motor leftMotor2 = motor(PORT2, ratio6_1, true);
-motor leftMotor3 = motor(PORT3, ratio18_1, false);
+motor leftMotor3 = motor(PORT3, ratio6_1, true);
 
 motor rightMotor1 = motor(PORT4, ratio6_1, false);
 motor rightMotor2 = motor(PORT5, ratio6_1, false);
-motor rightMotor3 = motor(PORT6, ratio18_1, true);
+motor rightMotor3 = motor(PORT6, ratio6_1, false);
 
 // inertial sensor for auton turning and heading
 // If you do not have an inertial sensor, assign it to an unused port. Ignore the warning at the start of the program.
-inertial inertial1 = inertial(PORT10);
+inertial inertial1 = inertial(PORT13);
 
 // 0: double arcade drive, 1: single aracde, 2: tank drive, 3: mecanum drive
 int DRIVE_MODE = 0;
@@ -29,10 +29,8 @@ int DRIVE_MODE = 0;
 // ------------------------------------------------------------------------
 motor roller = motor(PORT11, ratio18_1, true);
 
-
 // total number of motors, including drivetrain
 const int NUMBER_OF_MOTORS = 7;
-
 
 void inTake() {
   roller.spin(forward, 12, volt);
@@ -43,20 +41,19 @@ void outTake() {
 }
 
 void stopRollers() {
-  // Stops the roller motors.
   roller.stop(brake);
 }
+
 
 // ------------------------------------------------------------------------
 //               Code below are not specific to any game
 // ------------------------------------------------------------------------
 
-
 Drive chassis(
   //Left Motors:
-  motor_group(leftMotor1, leftMotor2, leftMotor3),
+  motor_group(leftMotor2, leftMotor1, leftMotor3),
   //Right Motors:
-  motor_group(rightMotor1, rightMotor2, rightMotor3),
+  motor_group(rightMotor2, rightMotor1, rightMotor3),
   //Inertial Sensor:
   inertial1,
   //wheel diameter:
@@ -68,17 +65,18 @@ Drive chassis(
 // Resets the chassis constants.
 void setChassisDefaults() {
   // Sets the heading of the chassis to the current heading of the inertial sensor.
-  chassis.setHeading(chassis.gyro.heading());
+  chassis.setHeading(chassis.inertialSensor.heading());
 
+  chassis.setMaxVoltage(10, 10, 6);
   // Sets the drive PID constants for the chassis.
   // These constants are used to control the acceleration and deceleration of the chassis.
-  chassis.setDrivePID(10, 1.5, 0, 10, 0);
+  chassis.setDrivePID(1.5, 0, 10, 0);
   // Sets the turn PID constants for the chassis.
   // These constants are used to control the turning of the chassis.
-  chassis.setTurnPID(10, 0.2, .015, 1.5, 7.5);
+  chassis.setTurnPID(0.2, .015, 1.5, 7.5);
   // Sets the heading PID constants for the chassis.
   // These constants are used to control the heading adjustment of the chassis.
-  chassis.setHeadingPID(6, .4, 1);
+  chassis.setHeadingPID(0.4, 1);
   // Sets the exit conditions for the drive functions.
   // These conditions are used to determine when the drive function should exit.
   chassis.setDriveExitConditions(1, 200, 2000);
@@ -118,12 +116,6 @@ void usercontrol(void) {
 
   // This loop runs forever, controlling the robot during the driver control period.
   while (1) {
-    if (!chassis.joystickTouched){
-      if(controller1.Axis1.position() != 0 || controller1.Axis2.position() != 0 
-        || controller1.Axis3.position() != 0 || controller1.Axis4.position() != 0) {
-        chassis.joystickTouched = true;
-      }
-    }
     switch (DRIVE_MODE) {
     case 0: // double arcade
       chassis.controlArcade(controller1.Axis2.position(), controller1.Axis4.position());
