@@ -552,10 +552,10 @@ def set_chassis_defaults():
     chassis.set_heading_pid(6, 0.4, 1)
     
     # Set the exit conditions for the drive functions
-    chassis.set_drive_exit_conditions(1, 200, 2000)
+    chassis.set_drive_exit_conditions(1, 300, 3000)
     
     # Set the exit conditions for the turn functions
-    chassis.set_turn_exit_conditions(1.5, 200, 5500)
+    chassis.set_turn_exit_conditions(1.5, 300, 3000)
     
     # Set the arcade drive constants for the chassis
     chassis.set_arcade_constants(0.5, 0.5, 0.85)

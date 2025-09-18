@@ -79,10 +79,10 @@ void setChassisDefaults() {
   chassis.setHeadingPID(0.4, 1);
   // Sets the exit conditions for the drive functions.
   // These conditions are used to determine when the drive function should exit.
-  chassis.setDriveExitConditions(1, 200, 2000);
+  chassis.setDriveExitConditions(1, 300, 3000);
   // Sets the exit conditions for the turn functions.
   // These conditions are used to determine when the turn function should exit.
-  chassis.setTurnExitConditions(1.5, 200, 1500);
+  chassis.setTurnExitConditions(1.5, 300, 3000);
 
   // Sets the arcade drive constants for the chassis.
   // These constants are used to control the arcade drive of the chassis.
