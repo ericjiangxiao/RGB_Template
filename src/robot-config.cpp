@@ -8,17 +8,17 @@ controller controller1 = controller(primary);
 //              Drivetrain definition
 // ------------------------------------------------------------------------
 //If you only have 4  motors (or mecanum drive), assign leftMotor3, rightMotor3 to unused ports.
-motor leftMotor1 = motor(PORT1, ratio6_1, true);
-motor leftMotor2 = motor(PORT2, ratio6_1, true);
-motor leftMotor3 = motor(PORT3, ratio6_1, true);
+motor leftMotor1 = motor(PORT11, ratio18_1, true);
+motor leftMotor2 = motor(PORT12, ratio6_1, true);
+motor leftMotor3 = motor(PORT13, ratio6_1, true);
 
-motor rightMotor1 = motor(PORT4, ratio6_1, false);
-motor rightMotor2 = motor(PORT5, ratio6_1, false);
-motor rightMotor3 = motor(PORT6, ratio6_1, false);
+motor rightMotor1 = motor(PORT1, ratio18_1, false);
+motor rightMotor2 = motor(PORT2, ratio6_1, false);
+motor rightMotor3 = motor(PORT3, ratio6_1, false);
 
 // inertial sensor for auton turning and heading
 // If you do not have an inertial sensor, assign it to an unused port. Ignore the warning at the start of the program.
-inertial inertial1 = inertial(PORT13);
+inertial inertial1 = inertial(PORT16);
 
 // 0: double arcade drive, 1: single aracde, 2: tank drive, 3: mecanum drive
 int DRIVE_MODE = 0;
@@ -27,7 +27,7 @@ int DRIVE_MODE = 0;
 // ------------------------------------------------------------------------
 //        Other subsystems: motors, sensors and helper functions definition
 // ------------------------------------------------------------------------
-motor roller = motor(PORT11, ratio18_1, true);
+motor roller = motor(PORT17, ratio6_1, true);
 
 // total number of motors, including drivetrain
 const int NUMBER_OF_MOTORS = 7;
@@ -44,9 +44,50 @@ void stopRollers() {
   roller.stop(brake);
 }
 
+// ------------------------------------------------------------------------
+//              Button controls
+// ------------------------------------------------------------------------
+// This function is called when the L1 button is pressed.
+void buttonL1Action() {
+  inTake();
+  
+  // Wait until the button is released to stop the rollers.
+  while(controller1.ButtonL1.pressing()) {
+    wait (20, msec);
+  }
+  stopRollers();
+}
+
+void buttonL2Action() {
+  outTake();
+  // Wait until the button is released to stop the rollers.
+  while(controller1.ButtonL2.pressing()) {
+    wait (20, msec);
+  }
+  stopRollers();
+}
+
+
+void buttonR2Action()
+{
+  // brake the drivetrain until the button is released.
+  chassis.stop(hold);
+  controller1.rumble(".");
+  waitUntil(!controller1.ButtonR2.pressing());
+  chassis.checkStatus();
+  chassis.stop(coast);
+}
+
+void setupButtonMapping() {
+  controller1.ButtonL1.pressed(buttonL1Action);
+  controller1.ButtonL2.pressed(buttonL2Action);
+  controller1.ButtonR2.pressed(buttonR2Action);
+}
+
+
 
 // ------------------------------------------------------------------------
-//               Code below are not specific to any game
+//               chassis parameters and PID constants
 // ------------------------------------------------------------------------
 
 Drive chassis(
@@ -88,6 +129,11 @@ void setChassisDefaults() {
   // These constants are used to control the arcade drive of the chassis.
   chassis.setArcadeConstants(0.5, 0.5, 0.85);
 }
+
+
+// ------------------------------------------------------------------------
+//              Drive modes and user control
+// ------------------------------------------------------------------------
 
 void changeDriveMode(){
   controller1.rumble("-");

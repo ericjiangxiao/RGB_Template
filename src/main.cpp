@@ -7,44 +7,6 @@ using namespace vex;
 // A global instance of competition
 competition Competition;
 
-// This function is called when the L1 button is pressed.
-void buttonL1Action() {
-  inTake();
-  
-  // Wait until the button is released to stop the rollers.
-  while(controller1.ButtonL1.pressing()) {
-    wait (20, msec);
-  }
-  stopRollers();
-}
-
-void buttonL2Action() {
-  outTake();
-  // Wait until the button is released to stop the rollers.
-  while(controller1.ButtonL2.pressing()) {
-    wait (20, msec);
-  }
-  stopRollers();
-}
-
-
-void buttonR2Action()
-{
-  // brake the drivetrain until the button is released.
-  chassis.stop(hold);
-  controller1.rumble(".");
-  waitUntil(!controller1.ButtonR2.pressing());
-  chassis.checkStatus();
-  chassis.stop(coast);
-}
-
-void setupButtonMapping() {
-  controller1.ButtonL1.pressed(buttonL1Action);
-  controller1.ButtonL2.pressed(buttonL2Action);
-  controller1.ButtonR2.pressed(buttonR2Action);
-}
-
-
 
 // ------------------------------------------------------------------------
 //               Code below are not specific to any game
@@ -94,9 +56,6 @@ int main() {
   // Register the autonomous and driver control functions.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
-
-  //comment out the following line to disable auton testing
-  registerAutonTestButtons();
 
   // Set up other button mapping for the controller
   setupButtonMapping();

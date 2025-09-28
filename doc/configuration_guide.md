@@ -172,8 +172,8 @@ void stopRollers();
 ---
 
 ## Button Control Configuration 
-### Step 1: Open main.cpp
-Navigate to `src/main.cpp` and locate the button functions.
+### Step 1: Open robot-config.cpp
+Navigate to `src/robot-config.cpp` and locate the `button controls` section.
 
 ### Step 2: Create Button Functions
 Add button functions for your subsystems:

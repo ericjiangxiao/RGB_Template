@@ -68,6 +68,7 @@ char const * autonMenuText[] = {
 
 int autonNum;                         // Total number of autons, automatically calculated based on the size of the autonMenuText array
 bool autonTestMode = false;           // Indicates if in test mode
+bool configMode = false;              // Indicates if in configuration mode
 bool exitAutonMenu = false;           // Flag to exit the autonomous menu
 bool enableEndGameTimer = false;      // Flag to indicate if endgame timer is enabled 
 const int END_GAME_SECONDS = 85;      // Endgame reminder starts at 85 seconds
@@ -172,6 +173,91 @@ bool setupinertialSensor() {
   return true;
 }
 
+/**
+ * @brief Trim leading and trailing whitespace from a string.
+ * @param str The string to trim.
+ * @return A pointer to the trimmed string.
+ */
+char* trim_whitespace(char* str) {
+    char* end;
+    // Trim leading whitespace
+    while (isspace((unsigned char)*str)) {
+        str++;
+    }
+    if (*str == 0) {
+        return str; // All whitespace
+    }
+    // Trim trailing whitespace
+    end = str + strlen(str) - 1;
+    while (end > str && isspace((unsigned char)*end)) {
+        end--;
+    }
+    *(end + 1) = 0;
+    return str;
+}
+
+// load program parameters from the SD card
+void loadConfigParameters()
+{
+  if (Brain.SDcard.isInserted()) {
+    if (Brain.SDcard.exists("parameters.txt")) {  
+      // open the file for reading
+      uint8_t  myReadBuffer[1000];  
+      Brain.SDcard.loadfile("parameters.txt", myReadBuffer, sizeof(myReadBuffer));
+      wait(0.5, seconds);
+
+      char line_buffer[256];
+      char* buffer_ptr = (char*)myReadBuffer;
+      char* line_end;
+
+      // Process the buffer line by line
+      while ((line_end = strchr(buffer_ptr, '\n')) != NULL) {
+          // Copy the current line into the line_buffer
+          int line_len = line_end - buffer_ptr;
+          strncpy(line_buffer, buffer_ptr, line_len);
+          line_buffer[line_len] = '\0';
+
+          // Find the position of the '=' character
+          char* equals_sign = strchr(line_buffer, '=');
+          if (equals_sign != NULL) {
+              // Null-terminate the key part of the string
+              *equals_sign = '\0';
+              
+              // Extract the key and value strings
+              char* key = trim_whitespace(line_buffer);
+              char* value_str = trim_whitespace(equals_sign + 1);
+
+              // Check if the line is for 'auton' and 'drive_mode'
+              if (strcmp(key, "auton") == 0) {
+                  currentAutonSelection = atoi(value_str);
+              } else if (strcmp(key, "drive_mode") == 0) {
+                  DRIVE_MODE = atoi(value_str);
+              }
+          }
+          
+          // Move the pointer to the start of the next line
+          buffer_ptr = line_end + 1;
+      }
+    }
+  }
+}
+
+// save program parameters to the SD card
+void saveConfigParameters()
+{
+  if (Brain.SDcard.isInserted()) {    
+    // Create the parameter string with current values
+    char parameter_buffer[256];
+    sprintf(parameter_buffer, "auton = %d\ndrive_mode = %d\n", currentAutonSelection, DRIVE_MODE);
+    int32_t result = Brain.SDcard.savefile("parameters.txt", (uint8_t*)parameter_buffer, strlen(parameter_buffer));
+    
+    if (result < 0) {
+      printControllerScreen("save failed");
+    }
+    wait(0.5, seconds);
+  } 
+}
+
 // This function is called before the autonomous period starts.
 void pre_auton() {
   // Sets up the inertialSensor.
@@ -183,10 +269,14 @@ void pre_auton() {
   motorsSetupSuccess = checkMotors(NUMBER_OF_MOTORS);
   //set the parameters for the chassis
   setChassisDefaults();
-  // Shows the autonomous menu.
-  if(inertialSensorSetupSuccess && motorsSetupSuccess) showAutonMenu();
+  // load parameters from the SD card
+  loadConfigParameters();
+  // Shows the autonomous menu and register the buttons for autonomous testing.
+  if(inertialSensorSetupSuccess && motorsSetupSuccess) {
+    showAutonMenu();
+    registerAutonTestButtons();
+  }
 }
-
 
 
 // ----------------------------------------------------------------------------
@@ -200,93 +290,106 @@ bool continueAutonStep()
   return true; 
 }
 
-// This function is called when the Right button is pressed.
-void buttonRightAction()
+void autonTestButtonCheck()
 {
-  if ((Brain.Timer.time(sec) < 5) && !autonTestMode) {  
-    // If the button is pressed within 5 seconds of starting the program, enter test mode.
-    controller1.rumble("-");
-    printControllerScreen("Test Mode: ON");
-    wait(1, sec);
-    showAutonMenu();
-    autonTestMode = true;
-    return;
-  } 
-  if (autonTestMode)
+    // within 5 seconds of driver control.
+  while (Brain.Timer.time(sec) < 5) {
+    if (controller1.ButtonRight.pressing())
+    {
+      waitUntil(!controller1.ButtonRight.pressing());
+      //activate the auton test mode
+      controller1.rumble("-");
+      printControllerScreen("Test Mode: ON");
+      wait(1, sec);
+      showAutonMenu();
+      autonTestMode = true;
+    }
+    if (controller1.ButtonLeft.pressing())
+    {
+      //active the configuration mode to change drive mode
+      waitUntil(!controller1.ButtonLeft.pressing());
+      controller1.rumble("-");
+      printControllerScreen("Config Mode: ON");
+      configMode = true;
+    }
+    wait(100, msec);
+  }
+  while(true)
   {
-    controller1.rumble(".");
-    // if in test mode, scroll through the auton menu
-    currentAutonSelection = (currentAutonSelection + 1) % autonNum;
-    showAutonMenu();
+    if (configMode) {
+      if(controller1.ButtonLeft.pressing())
+      {
+        waitUntil(!controller1.ButtonLeft.pressing());
+        // Change the drive mode
+        controller1.rumble("-");
+        changeDriveMode();
+        wait(0.5, sec);
+        saveConfigParameters();
+      }
+    }
+
+    if (autonTestMode) 
+    {
+      if(controller1.ButtonRight.pressing())
+      {
+        waitUntil(!controller1.ButtonRight.pressing());
+        controller1.rumble(".");
+        // Scroll through the auton menu
+        currentAutonSelection = (currentAutonSelection + 1) % autonNum;
+        wait(0.5, sec);
+        saveConfigParameters();
+        showAutonMenu();
+      }
+      if(controller1.ButtonLeft.pressing())
+      {
+        waitUntil(!controller1.ButtonLeft.pressing());
+        controller1.rumble(".");
+        // Scroll through the auton menu
+        currentAutonSelection = (currentAutonSelection - 1 + autonNum) % autonNum;
+        wait(0.5, sec);
+        saveConfigParameters();
+        showAutonMenu();
+      }
+      if(controller1.ButtonDown.pressing())
+      {
+        waitUntil(!controller1.ButtonDown.pressing());
+        controller1.rumble(".");
+        // Go to the next step.
+        autonTestStep++;
+        char msg[30];
+        sprintf(msg, "Step: %d", autonTestStep);
+        printControllerScreen(msg);
+      }
+      if(controller1.ButtonUp.pressing())
+      {
+        waitUntil(!controller1.ButtonUp.pressing());
+        controller1.rumble(".");
+        // Go to the previous step.
+        if (autonTestStep > 0) autonTestStep--;
+        char msg[30];
+        sprintf(msg, "Step: %d", autonTestStep);
+        printControllerScreen(msg);
+      }
+      if(controller1.ButtonA.pressing())
+      {
+        waitUntil(!controller1.ButtonA.pressing());
+        //run the selected autonomous routine for testing and displays the run time.
+        controller(primary).rumble(".");
+        double t1 = Brain.Timer.time(sec);
+        runAutonItem(); 
+        double t2 = Brain.Timer.time(sec);
+        char timeMsg[30];
+        sprintf(timeMsg, "run time: %.1f", t2-t1);
+        printControllerScreen(timeMsg);
+        chassis.stop(coast);
+      }
+    } 
+    wait(100, msec);
   }
 }
 
-void buttonLeftAction()
-{
-  if ((Brain.Timer.time(sec) < 5)) {
-    // If the button is pressed within 5 seconds of starting the program, change the drive mode.
-    changeDriveMode();
-    return;
-  }
-  if (autonTestMode) 
-  {
-    // if in test mode, scroll through the auton menu
-    controller1.rumble(".");
-    currentAutonSelection = (currentAutonSelection - 1 + autonNum) % autonNum;
-    showAutonMenu();
-    return;
-  }
-}
-
-
-void buttonDownAction()
-{
-  if (autonTestMode) 
-  {
-    // If in test mode, go to the next step.
-    controller1.rumble(".");
-    autonTestStep++;
-    char msg[30];
-    sprintf(msg, "Step: %d", autonTestStep);
-    printControllerScreen(msg);
-  }
-}
-
-void buttonUpAction()
-{
-  if (autonTestMode) 
-  {
-    // If in test mode, go to the previous step.
-    controller1.rumble(".");
-    if (autonTestStep > 0) autonTestStep--;
-    char msg[30];
-    sprintf(msg, "Step: %d", autonTestStep);
-    printControllerScreen(msg);
-  }
-}
-
-void buttonAAction()
-{
-  if (autonTestMode) 
-  {
-    // If in test mode, run the selected autonomous routine for testing and displays the run time.
-    controller(primary).rumble(".");
-    double t1 = Brain.Timer.time(sec);
-    runAutonItem(); 
-    double t2 = Brain.Timer.time(sec);
-    char timeMsg[30];
-    sprintf(timeMsg, "run time: %.1f", t2-t1);
-    printControllerScreen(timeMsg);
-    chassis.stop(coast);
-  }
-}
-
-// Register the controller button callbacks for autonomous testing.
+// in background, check the controller button press for autonomous testing.
 void registerAutonTestButtons()
 {
-  controller1.ButtonRight.pressed(buttonRightAction);
-  controller1.ButtonLeft.pressed(buttonLeftAction);
-  controller1.ButtonDown.pressed(buttonDownAction);
-  controller1.ButtonUp.pressed(buttonUpAction);
-  controller1.ButtonA.pressed(buttonAAction);
+  thread autonTestButtonThread = thread(autonTestButtonCheck);
 }
