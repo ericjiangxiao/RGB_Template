@@ -1,13 +1,12 @@
 # RGB BOTS template
 From Haverford Robotics Team 169X (The Cavalry) and RGB Bots Team 99009A (the little red pony).
 
-This project provides a lightweight C++ template for VEX V5 robotics. It offers a modular architecture and a simple library for PID driving control and autonomous code structure, allowing teams to quickly get their robot operational and adapt the core functionality to their needs. The built-in test mode allows teams to step through and test all of their autonomous routines during driver control, providing a unique way to debug and iterate without having to rebuild multiple programs or require the field switch. Finally, the included sample web application for controlling the robot in real time on mobile devices adds a fun and interactive dimension to VEX robot beyond V5RC competitions (see [demo video](https://youtube.com/shorts/rn8VEuGWva8)).
+This project provides a lightweight C++ template for VEX V5 robotics teams as a learning tool. It offers a modular architecture and a simple library for PID driving control and autonomous code structure, allowing teams to quickly get their robot operational and adapt and extend the core functionality to their needs. The built-in test mode allows teams to step through and test all of their autonomous routines during driver control, providing a unique way to debug and iterate without having to rebuild multiple programs or require the field switch. Finally, the included sample web application for controlling the robot in real time on mobile devices adds a fun and interactive dimension to VEX robot beyond V5RC competitions (see [demo video](https://youtube.com/shorts/rn8VEuGWva8)).
 
-This project also includes a [python version](RGB-Template-Python/readme.md) of the code with simplified features. If you are a beginner team you might want to check it out. 
+This project also includes a [python version](RGB-Template-Python/readme.md) of the code with PID controls. If you are a  middle school team who does not want to jump into c++ right away, you might want to check it out as an educational tool. 
 
 ## Target Audience
-
-This library is designed specifically for teams who are getting started with VEX V5 c++ programming and do **NOT** have odometry (tracking wheel) setups. Advanced high school teams often use comprehensive libraries like [JAR-Template](https://github.com/JacksonAreaRobotics/JAR-Template) and [LemLib](https://github.com/LemLib/LemLib) that provide features such as path following and pure pursuit. In contrast, this template focuses on simplicity and ease of use, allowing teams to quickly get their robot operational without the complexity of advanced positioning systems.
+This library is designed specifically for teams who are getting started with VEX V5 c++ programming and do **NOT** have odometry (tracking wheel) setups. Advanced high school teams often use comprehensive libraries like [JAR-Template](https://github.com/JacksonAreaRobotics/JAR-Template) and [LemLib](https://github.com/LemLib/LemLib) that provide features such as path following and pure pursuit. In contrast, this template focuses on simplicity and ease of use, allowing teams to quickly get their robot operational without the complexity of advanced positioning systems. The goal is **NOT** to provide a “black box” for competition use, but rather to help new teams learn C++ programming concepts and build confidence, without replacing the process of problem-solving and experimenting.
 
 ## Installation
 *   **Prerequisites:** Before you begin, make sure:
@@ -33,7 +32,6 @@ The project is organized into the following directories:
 *   `include/`: Header files
 *   `doc/`: Additional documentation
 *   `RGB_web_simple/`: Sample web app
-
 
 
 ## Configuration
