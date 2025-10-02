@@ -8,11 +8,11 @@ controller controller1 = controller(primary);
 //              Drivetrain definition
 // ------------------------------------------------------------------------
 //If you only have 4  motors (or mecanum drive), assign leftMotor3, rightMotor3 to unused ports.
-motor leftMotor1 = motor(PORT11, ratio18_1, true);
+motor leftMotor1 = motor(PORT11, ratio6_1, true);
 motor leftMotor2 = motor(PORT12, ratio6_1, true);
 motor leftMotor3 = motor(PORT13, ratio6_1, true);
 
-motor rightMotor1 = motor(PORT1, ratio18_1, false);
+motor rightMotor1 = motor(PORT1, ratio6_1, false);
 motor rightMotor2 = motor(PORT2, ratio6_1, false);
 motor rightMotor3 = motor(PORT3, ratio6_1, false);
 
@@ -27,6 +27,8 @@ int DRIVE_MODE = 0;
 // ------------------------------------------------------------------------
 //        Other subsystems: motors, sensors and helper functions definition
 // ------------------------------------------------------------------------
+
+// simple examples
 motor roller = motor(PORT17, ratio6_1, true);
 
 // total number of motors, including drivetrain
@@ -47,6 +49,8 @@ void stopRollers() {
 // ------------------------------------------------------------------------
 //              Button controls
 // ------------------------------------------------------------------------
+
+//simple examples
 // This function is called when the L1 button is pressed.
 void buttonL1Action() {
   inTake();
