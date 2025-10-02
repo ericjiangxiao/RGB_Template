@@ -173,29 +173,6 @@ bool setupinertialSensor() {
   return true;
 }
 
-/**
- * @brief Trim leading and trailing whitespace from a string.
- * @param str The string to trim.
- * @return A pointer to the trimmed string.
- */
-char* trim_whitespace(char* str) {
-    char* end;
-    // Trim leading whitespace
-    while (isspace((unsigned char)*str)) {
-        str++;
-    }
-    if (*str == 0) {
-        return str; // All whitespace
-    }
-    // Trim trailing whitespace
-    end = str + strlen(str) - 1;
-    while (end > str && isspace((unsigned char)*end)) {
-        end--;
-    }
-    *(end + 1) = 0;
-    return str;
-}
-
 // This function is called before the autonomous period starts.
 void pre_auton() {
   // Sets up the inertialSensor.
