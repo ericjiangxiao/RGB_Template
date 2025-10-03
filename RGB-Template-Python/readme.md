@@ -23,7 +23,7 @@ Read the introduction and tutorial for PID controllers by [George Gillard](https
 - Set kp, kd and ki all to zero
 - Increase the kp until the drive overshoots its target a bit
 - Increase the kd until the overshoot is corrected
-- Increase the ki to speed up the drive
+- Increase the ki to speed up the settle
 
 ## Programming Interfaces of the library
 
