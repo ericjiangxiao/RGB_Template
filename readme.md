@@ -40,7 +40,7 @@ For detailed step-by-step configuration instructions, see [Configuration Guide](
 
 ### Robot configuration ([robot-config.cpp](src/robot-config.cpp))
 
-*   **Drivetrain Motors and Sensors:** Define the 6-motor drivetrain motors and inertial sensor, including ports, gear ratios, and motor direction. By default, the port numbers are 1, 2, 3 for the left side, 4, 5, 6 for the right side and 10 for the inertial sensor. 
+*   **Drivetrain Motors and Sensors:** Define the 6-motor drivetrain motors and inertial sensor, including ports, gear ratios, and motor direction. 
 *   **Drive Mode:** Set `DRIVE_MODE` to `0` for double arcade control, `1` for single arcade control, `2` for tank control, or `3` for mecanum control.
 *   **Other Motors and Sensors:** Define your motors and sensors for other subsystems such as intake or lift.
 *   **Number of Total Motors:** Set `NUMBER_OF_MOTORS` to total number of motors to allow the program to automatically check for disconnected or overheated motors. 
