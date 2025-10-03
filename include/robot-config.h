@@ -1,7 +1,6 @@
 using namespace vex;
 
-void inTake();
-void outTake();
+void intake();
 void stopRollers();
 
 // ------------------------------------------------------------------------
