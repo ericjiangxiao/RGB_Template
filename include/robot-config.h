@@ -1,7 +1,5 @@
 using namespace vex;
 
-extern motor roller;
-
 void inTake();
 void outTake();
 void stopRollers();
@@ -21,7 +19,7 @@ extern Drive chassis;
 extern const int NUMBER_OF_MOTORS;
 extern int DRIVE_MODE;
 
-void  setupButtonMapping();
+void setupButtonMapping();
 void changeDriveMode();
 void setChassisDefaults();
 void usercontrol();
