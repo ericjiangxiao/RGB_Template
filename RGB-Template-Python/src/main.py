@@ -432,11 +432,8 @@ class Drive:
         Controller(ControllerType.PRIMARY).screen.print("heading: %d, dist: %d", heading, distance_traveled)
 
 
-
-
-
 '''
-Start of custom code section
+Start of competition code section
 This section is used to configure the motors, controller buttons, and auton functions .
 '''
 
@@ -521,7 +518,7 @@ def run_auton_item():
 
 
 '''
-End of the custom code section
+End of the competition code section
 '''
 
 
