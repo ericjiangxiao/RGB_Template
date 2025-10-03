@@ -2,7 +2,6 @@
 
 This guide provides step-by-step instructions for configuring your VEX V5 robot code using RGB template.
 
-**Important:** The **Drivetrain Configuration** section is mandatory for you to be able to test drive. The other sections are optional and depend on your specific needs.
 ---
 
 ## Drivetrain Configuration *(Required)*
