@@ -70,15 +70,6 @@ Drive chassis(
   - `2.0` for 2:1 gearbox (2 motor rotations = 1 wheel rotation)
   - `0.5` for 1:2 gearbox (0.5 motor rotations = 1 wheel rotation)
 
----
-
-**Available Constants:**
-- **kBrake (0.5)**: Controls how quickly the robot stops when joysticks are released
-- **kTurnBias (0.5)**: Controls the balance between forward/backward and turning movement
-- **kTurnDampingFactor (0.85)**: **Controls turn sensitivity** - lower values make turning slower but more accurate, higher values make turning faster.
-
-**Action:** Adjust these values based on your tuning of the chassis driving behavior. 
-
 
 ### (optional) Step 5: Configure Drive Constants
 Find the chassis constants in the `setChassisDefaults()` function in `robot-config.cpp`:
@@ -88,6 +79,13 @@ Find the chassis constants in the `setChassisDefaults()` function in `robot-conf
 // These constants are used to control the arcade drive of the chassis.
 chassis.setArcadeConstants(0.5, 0.5, 0.85);
 ```
+
+**Available Constants:**
+- **kBrake (0.5)**: Controls how quickly the robot stops when joysticks are released
+- **kTurnBias (0.5)**: Controls the balance between forward/backward and turning movement
+- **kTurnDampingFactor (0.85)**: **Controls turn sensitivity** - lower values make turning slower but more accurate, higher values make turning faster.
+
+**Action:** Adjust these values based on your tuning of the chassis driving behavior. 
 
 ### (optional) Step 6: Tune PID constants
 Read the introduction and tutorial for PID controllers by [George Gillard](https://smithcsrobot.weebly.com/uploads/6/0/9/5/60954939/pid_control_document.pdf). Find the chassis constants in the `setChassisDefaults()` function in `robot-config.cpp`:
