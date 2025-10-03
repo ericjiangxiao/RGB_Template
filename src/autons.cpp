@@ -84,10 +84,6 @@ void autonomous(void) {
 
 // This function prints the selected autonomous routine to the brain and controller screens.
 void printMenuItem() {
-  if (currentAutonSelection < 0) {
-    printControllerScreen("quick test");
-    return;
-  }    
   // Clears the brain screen.
   Brain.Screen.clearScreen();
   // Sets the cursor to the third row, first column.
