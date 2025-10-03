@@ -132,7 +132,7 @@ int NUMBER_OF_MOTORS = 8;  // Total number of motors
 
 **Action:** Update to match your total number of motors.
 
-**⚠️ Motor Monitoring System:**
+**Motor Monitoring System:**
 The program automatically monitors motor health and will alert the driver if:
 - **Disconnected motors**: Controller vibrates with "---" pattern and displays "X motor is disconnected"
 - **Overheated motors**: Controller vibrates with "---" pattern and displays "motor X is Y°C" (default temperature limit: 50°C)
