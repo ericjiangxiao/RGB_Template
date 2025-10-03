@@ -1,7 +1,7 @@
 # RGB BOTS Python Template 
 From Haverford Robotics Team 169X (The Cavalry) and RGB Bots Team 99009A (the little red pony).
 
-This project provides a simple Python template for VEX V5 robotics. It offers APIs for PID based automonous driving control and auton screen selections,  supports tank, arcade and mecanum drive mode, and automatically checks motor health. The library is designed specifically for middle school teams who are beginning their journey with VEX Python programming.
+This project provides a simple Python template for VEX V5 robotics. It offers APIs for PID based automonous driving control and auton screen selections,  supports tank, arcade and mecanum drive mode, and automatically checks motor health. The library is designed specifically as a learning tool for middle school teams who are beginning their journey with VEX Python programming.
 
 ## Installation
 *   **Prerequisites:** Before you begin, make sure:
