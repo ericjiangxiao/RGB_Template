@@ -91,7 +91,7 @@ chassis.setArcadeConstants(0.5, 0.5, 0.85);
 ```
 
 ### (optional) Step 6: Tune PID constants
-Find the chassis constants in the `setChassisDefaults()` function in `robot-config.cpp`:
+Read the introduction and tutorial for PID controllers by [George Gillard](https://smithcsrobot.weebly.com/uploads/6/0/9/5/60954939/pid_control_document.pdf). Find the chassis constants in the `setChassisDefaults()` function in `robot-config.cpp`:
 
 ```cpp
   // Sets the turn PID constants for the chassis.
