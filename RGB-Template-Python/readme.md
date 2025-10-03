@@ -19,6 +19,7 @@ For detailed step-by-step configuration instructions, see [Configuration Guide](
 For general VEX API reference, check out [Python commands in VEXcode V5](https://api.vex.com/v5/home/python/index.html).
 
 ## How to Tune PID Parameters
+Read the introduction and tutorial for PID controllers by [George Gillard](https://smithcsrobot.weebly.com/uploads/6/0/9/5/60954939/pid_control_document.pdf). 
 - Set kp, kd and ki all to zero
 - Increase the kp until the drive overshoots its target a bit
 - Increase the kd until the overshoot is corrected
