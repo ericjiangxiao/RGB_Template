@@ -28,18 +28,15 @@ int DRIVE_MODE = 0;
 //        Other subsystems: motors, sensors and helper functions definition
 // ------------------------------------------------------------------------
 
-// simple examples
+// intaker example
 motor roller = motor(PORT17, ratio6_1, true);
 
 // total number of motors, including drivetrain
 const int NUMBER_OF_MOTORS = 7;
 
-void inTake() {
+// sample help functions
+void intake() {
   roller.spin(forward, 12, volt);
-}
-
-void outTake() {
-  roller.spin(forward, -12, volt);
 }
 
 void stopRollers() {
@@ -53,7 +50,7 @@ void stopRollers() {
 //simple examples
 // This function is called when the L1 button is pressed.
 void buttonL1Action() {
-  inTake();
+  intake();
   
   // Wait until the button is released to stop the rollers.
   while(controller1.ButtonL1.pressing()) {
@@ -62,16 +59,7 @@ void buttonL1Action() {
   stopRollers();
 }
 
-void buttonL2Action() {
-  outTake();
-  // Wait until the button is released to stop the rollers.
-  while(controller1.ButtonL2.pressing()) {
-    wait (20, msec);
-  }
-  stopRollers();
-}
-
-
+// This function is called when the R2 button is pressed.
 void buttonR2Action()
 {
   // brake the drivetrain until the button is released.
@@ -84,7 +72,6 @@ void buttonR2Action()
 
 void setupButtonMapping() {
   controller1.ButtonL1.pressed(buttonL1Action);
-  controller1.ButtonL2.pressed(buttonL2Action);
   controller1.ButtonR2.pressed(buttonR2Action);
 }
 
@@ -112,22 +99,21 @@ void setChassisDefaults() {
   // Sets the heading of the chassis to the current heading of the inertial sensor.
   chassis.setHeading(chassis.inertialSensor.heading());
 
+  // Sets the maximum drive and turn voltage 
   chassis.setMaxVoltage(10, 10, 6);
+  
   // Sets the drive PID constants for the chassis.
-  // These constants are used to control the acceleration and deceleration of the chassis.
   chassis.setDrivePID(1.5, 0, 10, 0);
   // Sets the turn PID constants for the chassis.
-  // These constants are used to control the turning of the chassis.
   chassis.setTurnPID(0.2, .015, 1.5, 7.5);
   // Sets the heading PID constants for the chassis.
-  // These constants are used to control the heading adjustment of the chassis.
   chassis.setHeadingPID(0.4, 1);
   // Sets the exit conditions for the drive functions.
   // These conditions are used to determine when the drive function should exit.
   chassis.setDriveExitConditions(1, 300, 3000);
   // Sets the exit conditions for the turn functions.
   // These conditions are used to determine when the turn function should exit.
-  chassis.setTurnExitConditions(1.5, 300, 3000);
+  chassis.setTurnExitConditions(1.5, 300, 2000);
 
   // Sets the arcade drive constants for the chassis.
   // These constants are used to control the arcade drive of the chassis.
