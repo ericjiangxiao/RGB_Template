@@ -12,7 +12,7 @@ This project provides a simple Python template for VEX V5 robotics. It offers AP
     - Copy downloaded main.py to the src folder of the created project and overwrite the existing file
 
 ## Configuration
-Open main.py, search for "competition code section". In this section, modify the code as needed.
+Open main.py, search for "competition code section". In this section, edit your own code.
 
 For detailed step-by-step configuration instructions, see [Configuration Guide](configuration_guide.md).
 
