@@ -7,11 +7,6 @@ using namespace vex;
 // A global instance of competition
 competition Competition;
 
-
-// ------------------------------------------------------------------------
-//               Code below are not specific to any game
-// ------------------------------------------------------------------------
-  
 void pollCommandMessages()
 {
   static FILE* serialPort = nullptr;
