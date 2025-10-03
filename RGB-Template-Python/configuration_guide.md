@@ -171,11 +171,11 @@ auton_menu_text = ["auton1", "auton2"]
 ## Troubleshooting
 
 ### Common Issues:
-1. **Motors not responding or in conflict**: Check port numbers and motor directions in main.py
-2. **Robot drives in wrong direction**: Reverse motor directions (True/False) in main.py
-3. **Buttons not working**: Verify button mappings in setup_button_mapping() function
-4. **Auton not running**: Check auton function names in run_auton_item()
-5. **Turn sensitivity too high/low**: Adjust arcade constants in set_chassis_defaults() function - higher values increase sensitivity, lower values decrease sensitivity
-6. **Controller vibrating with "---" pattern**: Check for disconnected or overheated motors - the system automatically check motor health via check_motors() function
+1. **Motors not responding or in conflict**: Check port numbers and motor directions
+2. **Robot drives in wrong direction**: Reverse motor directions (True/False)
+3. **Buttons not working**: Verify button mappings in `setup_button_mapping()` function
+4. **Auton not running**: Check auton function names in `run_auton_item()`
+5. **Turn sensitivity too high/low**: Adjust arcade constants in `set_chassis_defaults()` function - higher values increase sensitivity, lower values decrease sensitivity
+6. **Controller vibrating with "---" pattern**: Check for disconnected or overheated motors - the system automatically check motor health via `check_motors()` function
 7. **Inertial sensor warnings**: If you don't have an inertial sensor, assign it to an unused port or simply ignore the warning
 
