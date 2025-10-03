@@ -56,12 +56,12 @@ int main() {
   // Register the autonomous and driver control functions.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
-
-  // Set up other button mapping for the controller
-  setupButtonMapping();
-
+  
   // Run the pre-autonomous function.
   pre_auton();
+
+  // Set up button mapping
+  setupButtonMapping();
 
   // Prevent main from exiting with an infinite loop.
   while (true) {
