@@ -145,7 +145,7 @@ int autonNum;                       // Total number of autons (automatically cal
 ```
 
 ### Button Registration
-The auton testing buttons are automatically registered in the main function:
+The auton testing buttons are automatically registered as a thread running at the background:
 
 ```cpp
   registerAutonTestButtons();
