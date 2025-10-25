@@ -68,7 +68,6 @@ char const * autonMenuText[] = {
 
 int autonNum;                         // Total number of autons, automatically calculated based on the size of the autonMenuText array
 bool autonTestMode = false;           // Indicates if in test mode
-bool configMode = false;              // Indicates if in configuration mode
 bool exitAutonMenu = false;           // Flag to exit the autonomous menu
 bool enableEndGameTimer = false;      // Flag to indicate if endgame timer is enabled 
 const int END_GAME_SECONDS = 85;      // Endgame reminder starts at 85 seconds
@@ -88,6 +87,7 @@ void printMenuItem() {
   Brain.Screen.clearScreen();
   // Sets the cursor to the third row, first column.
   Brain.Screen.setCursor(3, 1);
+  currentAutonSelection = currentAutonSelection % autonNum;
   // Prints the selected autonomous routine name.
   Brain.Screen.print("%s", autonMenuText[currentAutonSelection]);
   printControllerScreen(autonMenuText[currentAutonSelection]);
@@ -202,42 +202,25 @@ bool continueAutonStep()
 void autonTestButtonCheck()
 {
     // within 5 seconds of driver control.
-  while (Brain.Timer.time(sec) < 5) {
-    if (controller1.ButtonRight.pressing())
+  while (Brain.Timer.time(sec) < 5 && !autonTestMode) {
+    if (controller1.ButtonA.pressing())
     {
-      waitUntil(!controller1.ButtonRight.pressing());
-      //activate the auton test mode
-      controller1.rumble("-");
-      printControllerScreen("Test Mode: ON");
-      wait(1, sec);
-      showAutonMenu();
-      autonTestMode = true;
-      break;
+      wait(500, msec);
+      if (controller1.ButtonA.pressing())
+      {
+        controller1.rumble("-");
+        printControllerScreen("Test mode: ON");
+        waitUntil(!controller1.ButtonA.pressing());
+        showAutonMenu();
+        autonTestMode = true;
+        wait(1, seconds);
+        break;
+      }
     }
-    if (controller1.ButtonLeft.pressing())
-    {
-      //active the configuration mode to change drive mode
-      waitUntil(!controller1.ButtonLeft.pressing());
-      controller1.rumble("-");
-      printControllerScreen("Config Mode: ON");
-      configMode = true;
-      break;
-    }
-    wait(100, msec);
+    wait(50, msec);
   }
   while(true)
   {
-    if (configMode) {
-      if(controller1.ButtonLeft.pressing())
-      {
-        waitUntil(!controller1.ButtonLeft.pressing());
-        // Change the drive mode
-        controller1.rumble("-");
-        changeDriveMode();
-        wait(0.5, sec);
-      }
-    }
-
     if (autonTestMode) 
     {
       if(controller1.ButtonRight.pressing())
@@ -252,11 +235,8 @@ void autonTestButtonCheck()
       if(controller1.ButtonLeft.pressing())
       {
         waitUntil(!controller1.ButtonLeft.pressing());
-        controller1.rumble(".");
-        // Scroll through the auton menu
-        currentAutonSelection = (currentAutonSelection - 1 + autonNum) % autonNum;
+        changeDriveMode();
         wait(0.5, sec);
-        showAutonMenu();
       }
       if(controller1.ButtonDown.pressing())
       {
@@ -264,16 +244,6 @@ void autonTestButtonCheck()
         controller1.rumble(".");
         // Go to the next step.
         autonTestStep++;
-        char msg[30];
-        sprintf(msg, "Step: %d", autonTestStep);
-        printControllerScreen(msg);
-      }
-      if(controller1.ButtonUp.pressing())
-      {
-        waitUntil(!controller1.ButtonUp.pressing());
-        controller1.rumble(".");
-        // Go to the previous step.
-        if (autonTestStep > 0) autonTestStep--;
         char msg[30];
         sprintf(msg, "Step: %d", autonTestStep);
         printControllerScreen(msg);
