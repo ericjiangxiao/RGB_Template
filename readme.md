@@ -62,7 +62,7 @@ For detailed step-by-step configuration instructions, see [Configuration Guide](
   - Single Arcade Drive: Use left stick to turn and drive forward/backward
   - Tank Drive: Use left stick for left side motors, right stick for right side motors  
   - Mecanum Drive: Use left stick for forward/backward and turning, right stick for strafing
-  - Change drive mode for different drivers: Press the controller's `Left button` within 5 seconds of program startup to switch modes
+  - Change drive mode for different drivers: Enter the test mode within 5 seconds of program startup and press the controller's `Left button` to switch modes. Or set the `DRIVE_MODE` variable in the program directly.
 - **Automatic Motor Health and Game Time Monitoring**: 
   - The controller will vibrate and display warning messages if any motors are disconnected or overheated (temperature limit: 50°C). Check motor connections and temperatures immediately when alerts occur.
   - The controller will vibrate and display the "end game" message near end game.
@@ -81,9 +81,9 @@ For detailed step-by-step configuration instructions, see [Configuration Guide](
   - Set default auton: Set the `currentAutonSelection` value in `auton.cpp` and choose "timed run" using the controller.
   - Auton Selection:  Before the autonomous period is enabled by the field switch, press the brain screen to scroll through the list of autons.
 - **(Optional) Test all autons during driver control**:
-    - Press the controller's `Right button` within 5 seconds of program startup to enter test mode.
+    - Hold the controller's `A button` within 5 seconds of program startup to enter test mode.
     - When in test mode, press the `A button` to run the selected auton or current step.
-    - When in test mode, press the `Right/Left buttons` to cycle through the list of autonomous routines and press the `Up/Down buttons` to navigate through individual steps of the current auton.
+    - When in test mode, press the `Right buttons` to cycle through the list of autonomous routines and press the `Down buttons` to navigate through individual steps of the current auton.
     - At any time, to abort the auton driving, simply move the joystick.
     - See the complete action flow in [Test Auton Button Flow Explanation](doc/test_auton_buttons.md) and the [demo video](https://youtu.be/W6ql04Aj_xQ).
 
