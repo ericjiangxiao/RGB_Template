@@ -18,10 +18,10 @@ The test auton system allows you to test autonomous routines during driver contr
 ```
 
 **What happens:**
-- ✅ Controller rumbles with "-" pattern
-- ✅ Displays "Test Mode: ON" on controller screen
-- ✅ Shows auton menu
-- ✅ Sets `autonTestMode = true`
+- Controller rumbles with "-" pattern
+- Displays "Test Mode: ON" on controller screen
+- Shows auton menu
+- Sets `autonTestMode = true`
 
 ---
 
@@ -38,9 +38,9 @@ if (autonTestMode) {
 ```
 
 **What happens:**
-- ✅ Increments `currentAutonSelection` (cycles through available autons)
-- ✅ Calls `showAutonMenu()` which displays menu on brain and controller screens
-- ✅ Shows current selection (e.g., "auton1", "auton2", "auton_skill")
+- Increments `currentAutonSelection` (cycles through available autons)
+- Calls `showAutonMenu()` which displays menu on brain and controller screens
+- Shows current selection (e.g., "auton1", "auton2", "auton_skill")
 
 **Navigation Options:**
 - **Right Button**: Move forward in menu (auton1 → auton2 → auton_skill → auton1...)
@@ -60,9 +60,9 @@ if (autonTestMode) {
 ```
 
 **What happens:**
-- ✅ **Down Button**: Increases step number
-- ✅ Controller rumbles to confirm action
-- ✅ Displays current step on controller screen
+- **Down Button**: Increases step number
+- Controller rumbles to confirm action
+- Displays current step on controller screen
 
 ---
 
@@ -88,12 +88,12 @@ void buttonAAction()
 ```
 
 **What happens:**
-- ✅ Checks if in test mode
-- ✅ Records start time
-- ✅ Calls `runAutonItem()` which executes the selected auton
-- ✅ Calculates and displays run time
-- ✅ Stops chassis with coast
-- ✅ Controller rumbles to confirm execution
+- Checks if in test mode
+- Records start time
+- Calls `runAutonItem()` which executes the selected auton
+- Calculates and displays run time
+- Stops chassis with coast
+- Controller rumbles to confirm execution
 
 ---
 
@@ -130,22 +130,22 @@ bool continueAutonStep() {
 ```
 
 **What happens:**
-- ✅ Each step checks `autonTestStep` to determine what to execute
-- ✅ `continueAutonStep()` increments step and returns false in test mode
-- ✅ This causes the function to return early, stopping execution
-- ✅ In normal mode, execution continues through all steps
+- Each step checks `autonTestStep` to determine what to execute
+- `continueAutonStep()` increments step and returns false in test mode
+- This causes the function to return early, stopping execution
+- In normal mode, execution continues through all steps
 
 
 ---
 
 ### 6. Abort auto driving
-- ✅ At any time, move joystick to abort the auto driving.
+- At any time, move joystick to abort the auto driving.
 
 ---
 
 ### 7. Show status
 **Button: R2**
-- ✅ If hold this button while driving, upon releasing it, the controller displays current heading and distance driven.
+- If hold this button while driving, upon releasing it, the controller displays current heading and distance driven.
 
 ## Button Summary
 
@@ -173,7 +173,7 @@ bool continueAutonStep() {
 
 ---
 
-## 🔧 Technical Details
+## Technical Details
 
 ### Global Variables
 ```cpp
@@ -199,7 +199,7 @@ int main() {
 
   // Register auton testing button callbacks
   registerAutonTestButtons();
-
+}
 
 ```
 

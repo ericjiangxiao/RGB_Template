@@ -37,7 +37,7 @@ Click on **“Git: Clone”**
 
 If the GitHub repository gets updated and you want to get those changes:
 
-### 👉 In VS Code:
+### In VS Code:
 1. Open the **Source Control** panel (three-branch icon on the left).
 2. Click the **"… More Actions"** button.
 3. Click **"Pull"**
